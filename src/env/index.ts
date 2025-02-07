@@ -28,8 +28,15 @@ const envSchema = z.object({
     // enum() significa "uma entre algumas opções"
     // o "default" indica que, se essa variável não for informada no .env
     // a aplicação deve considerar como se fosse "production"
+    DATABASE_CLIENT: z.enum(['sqlite', 'pg']),
+    // pg significa 'postgres' e nós estamos escrevendo assim (ao invés de 'postgres' por extenso),
+    // porque o knex reconhece o client como 'pg'
     DATABASE_URL: z.string(),
-    PORT: z.number().default(3333),
+    PORT: z.coerce.number().default(3333), 
+    // é como se o coerce falasse "não interessa qual tipo de valor eu receber na porta,
+    // transforme isso em um número e se isso não retornar um valor ´valido, o default é 3333"
+    // ou seja, o coerce faz uma conversão; se for informado um número, nada é feito, mas se
+    // for informado outro tipo, ele vai tentar converter num número
 })
 
 const _env = envSchema.safeParse(process.env)
