@@ -56,7 +56,7 @@ describe('Transactions routes', () => {
             // não é o objeto exatamente igual ao que eu estou passando
             // no topo do código; mas sim um objeto que contém essas informações:
                 title: 'New transaction',
-                amout: 5000,
+                amount: 5000,
             })
         ])
     })

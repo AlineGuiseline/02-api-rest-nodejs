@@ -64,7 +64,7 @@ export async function transactionsRoutes(app: FastifyInstance) {
 
         const summary = await knex('transactions')
         .where('session_id', sessionId)
-        .sum('amout', { as: 'amount' })
+        .sum('amount', { as: 'amount' })
         .first()
         // o .first() é para garantir que o retorno NÃO seja um array e sim um elemento só
 
@@ -76,11 +76,11 @@ export async function transactionsRoutes(app: FastifyInstance) {
         // criar ou editar um recurso
         const createTransactionBodySchema = z.object({
             title: z.string(),
-            amout: z.number(),
+            amount: z.number(),
             type: z.enum(['credit', 'debit'])
         })
         
-        const { title, amout, type } = createTransactionBodySchema.parse(
+        const { title, amount, type } = createTransactionBodySchema.parse(
             request.body
         )
         // estou validando os dados do req.body (os dados vindos da requisição) para ver se
@@ -93,9 +93,6 @@ export async function transactionsRoutes(app: FastifyInstance) {
         // existe uma sessionId. Se já existir, é só eu passar na hora de criar a transação;
         // se não existir uma sessão (ou seja, se o usuário não tem nos cookies dele um id
         // de sessão), eu irei criar uma para ele
-
-        console.log(request.body)
-        console.log(request.cookies)
 
         if (!sessionId) {
             sessionId = randomUUID()
@@ -128,7 +125,7 @@ export async function transactionsRoutes(app: FastifyInstance) {
         await knex('transactions').insert({
             id: randomUUID(),
             title,
-            amout: type === 'credit' ? amout : amout * -1,
+            amount: type === 'credit' ? amount : amount * -1,
             /* nós não criamos uma coluna com o tipo da transação (se é crédito ou débito),
             por isso nós vamos utilizar apenas o amout e colocar a seguinte verificação:
             se for do tipo "crédito", vou utilizar o amout do jeito que ele está

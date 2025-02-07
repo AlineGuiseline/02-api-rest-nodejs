@@ -36,7 +36,7 @@ declare module 'knex/types/tables' {
         transactions: {
             id: string
             title: string
-            amout: number
+            amount: number
             created_at: string
             session_id?: string
         }
