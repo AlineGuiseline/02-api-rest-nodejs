@@ -1,5 +1,3 @@
-Uma coisa legal de fazer antes de iniciar o código em uma aplicação back-end é pensar em 3 coisas
-seguindo a Engenharia de Software:
 1. Requisitos Funcionais (RF): o que o usuário pode ou não pode fazer dentro do app
  [x] O usuário deve poder criar uma nova transação;
  [x] O usuário deve poder obter um resumo da conta;
