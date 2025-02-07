@@ -10,7 +10,7 @@ export async function up(knex: Knex): Promise<void> {
         // responsável por criar os campos da tabela
         table.uuid('id').primary() // sinaliza que é a chave primária
         table.text('title').notNullable() // .notNullable() sinaliza que o campo não pode ficar vazio
-        table.decimal('amount', 10, 2).notNullable() // o 10 é o tamanho do número que eu quero armazenar e o 2 é o número de casas decimais
+        table.decimal('amout', 10, 2).notNullable() // o 10 é o tamanho do número que eu quero armazenar e o 2 é o número de casas decimais
         table.timestamp('created_at').defaultTo(knex.fn.now()).notNullable() // anota a daat que cada registro foi criado (o ideal é ter em todas as tabelas)
     })
 }
