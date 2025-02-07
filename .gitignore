@@ -1,0 +1,12 @@
+# Dependencies
+node_modules
+
+# Database (o * ignora todos os arquivos terminados em .db)
+db/*.db
+
+# Environment
+.env
+.env.test
+
+# Build
+build
